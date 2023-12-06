@@ -73,7 +73,7 @@ export default function Login() {
           <h1 className="my-6 justify-center flex">
             <img src="/i-logo.png" alt="" width={70} height={70} />
           </h1>
-          <p className="text-gray-100">Login to your account</p>
+          <p className="text-green-100">Login to your account</p>
           <form action="" className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
             
             <div className="pb-2 pt-4">

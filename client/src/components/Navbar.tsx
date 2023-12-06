@@ -63,15 +63,16 @@ export function Navbar() {
               </li>
               <li>
                 <a
-                  href="#"
-                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  href="#about"
+                  data-te-smooth-scroll-init
+                  className="overscroll-auto block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 >
                   Contact Us
                 </a>
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/cart"
                   className="items-center hidden px-3 py-2 font-sans text-xs font-bold text-center uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block"
                 >
                   <img
@@ -84,7 +85,7 @@ export function Navbar() {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/login"
                   className="flex items-center px-3 py-2 font-sans text-xs font-bold text-center uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block"
                 >
                   <img

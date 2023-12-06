@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
         <script
           async
           src="node_modules/@material-tailwind/html@latest/scripts/ripple.js"
@@ -29,7 +29,7 @@ export default function RootLayout({
         <script
           async
           src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"
-        ></script>
+        ></script>        
 
       <body className={roboto.className}>
         {children}

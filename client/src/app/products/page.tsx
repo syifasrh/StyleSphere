@@ -12,7 +12,7 @@ export default function Products() {
       {/* Navbar */}
       <Navbar />
       <div className="py-32 mx-11">
-        <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-5xl mb-10">
+        <div className="max-w-lg mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-5xl mb-10">
           <div className="md:flex">
             <img
               src="https://voila.id/cdn/shop/files/global-banner-gender-newarrival_x500.jpg?v=1701363995"
