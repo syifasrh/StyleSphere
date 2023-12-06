@@ -3,6 +3,7 @@ import withMT from "@material-tailwind/react/utils/withMT";
 
 const config = withMT({
   content: [
+    "./node_modules/flowbite-react/**/*.js",
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -31,6 +32,6 @@ const config = withMT({
       scroll: "scroll 15s linear infinite",
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"), require("flowbite/plugin")],
 });
 export default config;

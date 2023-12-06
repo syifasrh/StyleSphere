@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import Card from "@/components/Card";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 
@@ -52,7 +53,6 @@ export default function Home() {
           />
         </div>
       </div>
-      {/* Catalogue */}
       <section className="container mx-auto p-10 px-0 md:p-10 md:py-10 md:px-0">
         <section className="p-5 md:p-0 xl:grid xl:grid-cols-12 xl:grid-rows-6 xl:h-200">
           <section className="row-start-1 row-end-5 col-start-1 col-end-9 bg-orange-100">
@@ -136,6 +136,21 @@ export default function Home() {
         </section>
       </section>
 
+      <div className="py-10 my-10 justify-between">
+        <h1 className="mt-8 text-center text-5xl text-green-600 font-bold">
+          Exclusive Series
+        </h1>
+        {/* Catalogue */}
+        <div className="flex py-10 justify-around">
+          <Card />
+        </div>
+        <div className="flex justify-center">
+          <button className="p-2 px-6 w-52 bg-green-500 text-white rounded-md hover:bg-green-600">
+            See More
+          </button>
+        </div>
+      </div>
+
       {/* Service Line */}
       <div className="py-14">
         <h3 className="text-2xl tracking-widest text-green-600 text-center">
@@ -203,7 +218,9 @@ export default function Home() {
         </div>
       </div>
       {/* Footer */}
-      <Footer />
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }

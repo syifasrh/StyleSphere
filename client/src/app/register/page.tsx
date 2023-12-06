@@ -1,28 +1,19 @@
-/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
 import Link from "next/link";
 
-export default function Login() {
+export default function Register() {
   return (
     <section className="min-h-screen flex items-stretch text-white ">
       <div
         className="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
         style={{
           backgroundImage:
-            "url(https://www.masala.com/cloud/2022/04/09/Picsart_22-04-09_07-10-34-559.jpg)",
+            "url(https://imagevars.gulfnews.com/2022/05/31/luxury-handbag_1811ae8ab8e_original-ratio.jpg)",
         }}
       >
         <div className="absolute opacity-60 inset-0 z-0" />
-        <div className="w-full px-24 z-10">
-          <h1 className="text-5xl font-bold text-left tracking-wide">
-            Discover Elegance in Every Stitch
-          </h1>
-          <p className="text-3xl my-4">
-            Elevate Your Style with Our Exquisite Collection of Branded Bags!
-          </p>
-        </div>
         <div className="bottom-0 absolute p-4 text-center right-0 left-0 flex justify-center space-x-4">
           <span>
             <svg
@@ -64,7 +55,7 @@ export default function Login() {
           className="absolute lg:hidden z-10 inset-0 bg-gray-500 bg-no-repeat bg-cover items-end"
           style={{
             backgroundImage:
-              "url(https://www.masala.com/cloud/2022/04/09/Picsart_22-04-09_07-10-34-559.jpg)",
+              "url(https://imagevars.gulfnews.com/2022/05/31/luxury-handbag_1811ae8ab8e_original-ratio.jpg)",
           }}
         >
           <div className="absolute bg-black opacity-60 inset-0 z-0" />
@@ -73,9 +64,26 @@ export default function Login() {
           <h1 className="my-6 justify-center flex">
             <img src="/i-logo.png" alt="" width={70} height={70} />
           </h1>
-          <p className="text-gray-100">Login to your account</p>
+          <p className="text-gray-100">Create your account</p>
           <form action="" className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
-            
+            <div className="pb-2 pt-4">
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Name"
+                className="block w-full p-4 text-lg rounded-lg bg-white text-green-800"
+              />
+            </div>
+            <div className="pb-2 pt-4">
+              <input
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Username"
+                className="block w-full p-4 text-lg rounded-lg bg-white text-green-800"
+              />
+            </div>
             <div className="pb-2 pt-4">
               <input
                 type="email"
@@ -94,14 +102,14 @@ export default function Login() {
                 placeholder="Password"
               />
             </div>
-            
+
             <div className="px-4 pb-2 pt-4">
               <button className="uppercase block w-full p-4 text-lg rounded-full bg-green-500 hover:bg-green-600 focus:outline-none">
-                sign in
+                sign up
               </button>
             </div>
             <div className="text-center text-green-400 hover:underline hover:text-green-100">
-              <Link href="/register">Don't have an account?</Link>
+              <Link href="/login">Already have an account?</Link>
             </div>
             <div className="p-4 text-center right-0 left-0 flex justify-center space-x-4 mt-16 lg:hidden ">
               <a href="#">

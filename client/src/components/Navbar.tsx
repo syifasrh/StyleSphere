@@ -1,84 +1,104 @@
+import Link from "next/link";
+
 /* eslint-disable @next/next/no-img-element */
 export function Navbar() {
   return (
-    <div className="fixed grid w-full place-items-center rounded-lg p-6 lg:overflow-visible" style={{zIndex: 20}}>
-      <div className="-m-6 max-h-[768px] w-[calc(100%+48px)]">
-        <nav className="sticky top-0 z-10 block w-full max-w-full px-4 py-2 text-white bg-white border rounded-none shadow-md h-max border-white/80 bg-opacity-80 backdrop-blur-2xl backdrop-saturate-200 lg:px-8 lg:py-4">
-          <div className="flex items-center justify-between text-blue-gray-900">
-            <a
-              href="#"
-              className="mr-4 block cursor-pointer py-1.5 font-sans text-base font-medium leading-relaxed text-inherit antialiased"
+    <div>
+      <nav
+        className="fixed w-full bg-white border-gray-200 dark:bg-gray-900 rounded-lg backdrop-blur-2xl bg-opacity-80 backdrop-saturate-200"
+        style={{ zIndex: 20 }}
+      >
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+          <Link
+            href="/"
+            className="flex items-center space-x-3 rtl:space-x-reverse"
+          >
+            <img src="/i-logo.png" className="h-8" alt="StyleSphere Logo" />
+            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+              <img src="/logo.png" className="h-8" alt="StyleSphere Logo" />
+            </span>
+          </Link>
+          <button
+            data-collapse-toggle="navbar-default"
+            type="button"
+            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            aria-controls="navbar-default"
+            aria-expanded="false"
+          >
+            <span className="sr-only">Open main menu</span>
+            <svg
+              className="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14"
             >
-              <img
-                src="/logo.png"
-                alt="StyleSphere Logo"
-                width={100}
-                height={24}
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M1 1h15M1 7h15M1 13h15"
               />
-            </a>
-            <div className="flex items-center gap-4">
-              <div className="hidden mr-4 lg:block">
-                <ul className="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-                  <li className="block p-1 font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                    <a
-                      href="#"
-                      className="items-center hidden px-4 py-2 font-sans text-xs font-bold text-center uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 text-green-600 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block"
-                    >
-                      Our Best Products
-                    </a>
-                  </li>
-                  <li className="block p-1 font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                    <a
-                      href="#"
-                      className="items-center hidden px-4 py-2 font-sans text-xs font-bold text-center uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block"
-                    >
-                      <img
-                        src="/cart-black.png"
-                        alt="StyleSphere Logo"
-                        width={24}
-                        height={24}
-                      />
-                    </a>
-                  </li>
-                  <li className="block p-1 font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                    <a
-                      href="#"
-                      className="flex items-center px-4 py-2 font-sans text-xs font-bold text-center uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block"
-                    >
-                      <img
-                        src="/icon-black.png"
-                        alt="StyleSphere Logo"
-                        width={24}
-                        height={24}
-                      />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <button
-                className="relative ml-auto h-6 max-h-[40px] w-6 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-inherit transition-all hover:bg-transparent focus:bg-transparent active:bg-transparent disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:hidden"
-                type="button"
-              >
-                <span className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  </svg>
-                </span>
-              </button>
-            </div>
+            </svg>
+          </button>
+          <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border  rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 items-center">
+              <li>
+                <Link
+                  href="/"
+                  className="block py-2 px-3 text-white bg-green-700 rounded md:bg-transparent md:text-gray-700 md:p-0 dark:text-white md:dark:text-green-500 md:hover:text-green-700"
+                  aria-current="page"
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products"
+                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                >
+                  Our Best Products
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                >
+                  Contact Us
+                </a>
+              </li>
+              <li>
+                <Link
+                  href="#"
+                  className="items-center hidden px-3 py-2 font-sans text-xs font-bold text-center uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block"
+                >
+                  <img
+                    src="/cart-black.png"
+                    alt="StyleSphere Logo"
+                    width={24}
+                    height={24}
+                  />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#"
+                  className="flex items-center px-3 py-2 font-sans text-xs font-bold text-center uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block"
+                >
+                  <img
+                    src="/icon-black.png"
+                    alt="StyleSphere Logo"
+                    width={24}
+                    height={24}
+                  />
+                </Link>
+              </li>
+            </ul>
           </div>
-        </nav>
-      </div>
+        </div>
+      </nav>
     </div>
   );
 }
