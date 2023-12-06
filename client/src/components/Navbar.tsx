@@ -72,7 +72,7 @@ export function Navbar() {
               </li>
               <li>
                 <Link
-                  href="/cart"
+                  href="/wishlist"
                   className="items-center hidden px-3 py-2 font-sans text-xs font-bold text-center uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block"
                 >
                   <img
