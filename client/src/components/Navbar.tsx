@@ -5,7 +5,7 @@ export function Navbar() {
   return (
     <div>
       <nav
-        className="fixed w-full bg-white border-gray-200 dark:bg-gray-900 rounded-lg backdrop-blur-2xl bg-opacity-80 backdrop-saturate-200"
+        className="fixed w-full bg-white shadow-lg border-gray-200 dark:bg-gray-900 rounded-lg backdrop-blur-2xl bg-opacity-80 backdrop-saturate-200"
         style={{ zIndex: 20 }}
       >
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">

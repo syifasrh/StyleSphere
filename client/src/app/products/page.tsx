@@ -5,6 +5,7 @@
 import Card from "@/components/Card";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import Search from "@/components/Search";
 
 export default function Products() {
   return (
@@ -19,6 +20,9 @@ export default function Products() {
               alt=""
             />
           </div>
+        </div>
+        <div className="mb-10">
+          <Search />
         </div>
         {/* Card */}
         <div className="flex justify-around">
