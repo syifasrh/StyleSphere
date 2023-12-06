@@ -17,6 +17,19 @@ const config = withMT({
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
+    keyframes: {
+      scroll: {
+        "0%": {
+          transform: "translateX(0%)",
+        },
+        "100%": {
+          transform: "translateX(-100%)",
+        },
+      },
+    },
+    animation: {
+      scroll: "scroll 15s linear infinite",
+    },
   },
   plugins: [require("daisyui")],
 });

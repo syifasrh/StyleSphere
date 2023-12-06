@@ -1,6 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 export function Navbar() {
   return (
-    <div className="fixed grid w-full place-items-center rounded-lg p-6 lg:overflow-visible">
+    <div className="fixed grid w-full place-items-center rounded-lg p-6 lg:overflow-visible" style={{zIndex: 20}}>
       <div className="-m-6 max-h-[768px] w-[calc(100%+48px)]">
         <nav className="sticky top-0 z-10 block w-full max-w-full px-4 py-2 text-white bg-white border rounded-none shadow-md h-max border-white/80 bg-opacity-80 backdrop-blur-2xl backdrop-saturate-200 lg:px-8 lg:py-4">
           <div className="flex items-center justify-between text-blue-gray-900">
@@ -42,7 +43,7 @@ export function Navbar() {
                   <li className="block p-1 font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
                     <a
                       href="#"
-                      className="flex items-center hidden px-4 py-2 font-sans text-xs font-bold text-center uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block"
+                      className="flex items-center px-4 py-2 font-sans text-xs font-bold text-center uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block"
                     >
                       <img
                         src="/icon-black.png"

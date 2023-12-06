@@ -1,11 +1,14 @@
+/* eslint-disable @next/next/no-img-element */
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 
 export default function Home() {
   return (
     <div className="bg-green-100">
+      {/* Navbar */}
       <Navbar />
-      <div className="carousel carousel-center rounded-box my-10 h-96 mx-14 mt-28">
+      {/* Carousell */}
+      <div className="carousel carousel-center rounded-box my-10 h-96 mx-14 mt-24">
         <div className="carousel-item bg-cover">
           <img
             src="https://voila.id/cdn/shop/files/9product-734814-DAAAI-2747-Xms-2023-09-13T2155130700_1200x1200.jpg?v=1694616949"
@@ -49,6 +52,91 @@ export default function Home() {
           />
         </div>
       </div>
+      {/* Catalogue */}
+      <section className="container mx-auto p-10 px-0 md:p-10 md:py-10 md:px-0">
+        <section className="p-5 md:p-0 xl:grid xl:grid-cols-12 xl:grid-rows-6 xl:h-200">
+          <section className="row-start-1 row-end-5 col-start-1 col-end-9 bg-orange-100">
+            <article className="p-10 flex justify-between items-center h-full">
+              <div className="space-y-5">
+                <h2 className="text-3xl md:text-5xl max-w-md">
+                  The most prestigious brand of handbag.
+                </h2>
+                <h3 className="text-xl">$2031.79</h3>
+              </div>
+              <div>
+                <img
+                  className="h-auto w-96"
+                  src="https://id.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-alma-bb-damier-ebene-tas-tangan--N41221_PM2_Front%20view.jpg"
+                  alt=""
+                />
+              </div>
+            </article>
+          </section>
+          <section className="row-start-5 row-end-7 col-start-1 col-end-4 bg-purple-300">
+            <article className="flex items-center h-full bg-green-900  p-6">
+              <div>
+                <h2 className="uppercase text-xm font-semibold text-gray-300">
+                  StyleSphere
+                </h2>
+                <p className=" text-3xl font-xl text-white mt-2">
+                  Elevate Your Style: Discover Luxury in Every Stitch
+                </p>
+              </div>
+            </article>
+          </section>
+          <section className="row-start-5 row-end-7 col-start-4 col-end-9 bg-gray-200">
+            <article className="p-10 flex justify-between items-center h-full">
+              <div className="space-y-5">
+                <h2 className="text-3xl max-w-xs">High-Quality Branded Bags</h2>
+                <h3 className="text-xl">$2100</h3>
+              </div>
+              <div>
+                <img
+                  className="h-auto w-full ml-10 -mt-5"
+                  src="https://me.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-x-yk-alma-bb%E2%80%8B--M46431_PM2_Front%20view.jpg"
+                  alt=""
+                />
+              </div>
+            </article>
+          </section>
+          <section className="row-start-1 row-end-4 col-start-9 col-end-13 bg-teal-100">
+            <article className="p-10 flex justify-between items-center h-full">
+              <div className="space-y-5">
+                <h2 className="text-2xl max-w-sm ">
+                  Chic Choices, Timeless Elegance
+                </h2>
+                <h3 className="text-xl">$2250</h3>
+              </div>
+              <div>
+                <img
+                  className="h-auto w-80"
+                  src="https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-x-yk-alma-bb%E2%80%8B-monogram-canvas-handbags--M46431_PM1_Interior2%20view.jpg"
+                  alt=""
+                />
+              </div>
+            </article>
+          </section>
+          <section className="row-start-4 row-end-7 col-start-9 col-end-13 bg-purple-100">
+            <article className="p-10 flex justify-between items-center h-full">
+              <div className="space-y-5">
+                <h2 className="text-2xl max-w-sm ">
+                  Exquisite Styles, Unmatched Sophistication
+                </h2>
+                <h3 className="text-xl">$2050</h3>
+              </div>
+              <div>
+                <img
+                  className="h-auto w-96"
+                  src="https://id.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-alma-bb-epi-handbags--M22213_PM2_Front%20view.jpg"
+                  alt=""
+                />
+              </div>
+            </article>
+          </section>
+        </section>
+      </section>
+
+      {/* Service Line */}
       <div className="py-14">
         <h3 className="text-2xl tracking-widest text-green-600 text-center">
           SERVICE
@@ -114,6 +202,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      {/* Footer */}
       <Footer />
     </div>
   );
