@@ -6,7 +6,7 @@ import AddWishlist from "./AddWhislist";
 
 export default function Card() {
   return (
-    <div className="relative flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md transform duration-300 hxranslate-y-1 cursor-pointer hover:shadow-2xl group">
+    <div className="relative flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg transform duration-300 hxranslate-y-1 cursor-pointer hover:shadow-2xl group">
       <div className="relative mx-4 mt-4 h-96 overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700">
         <img
           src="https://voila.id/cdn/shop/files/9product-734814-DAAAI-2747-Xms-2023-09-13T2155130700_1200x1200.jpg?v=1694616949"

@@ -10,10 +10,8 @@ import Search from "@/components/Search";
 export default function Products() {
   return (
     <div className="bg-green-100">
-      {/* Navbar */}
-      <Navbar />
       <div className="py-32 mx-11">
-        <div className="max-w-lg mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-5xl mb-10">
+        <div className="max-w-lg mx-auto bg-white rounded-xl overflow-hidden md:max-w-5xl mb-10 shadow-lg">
           <div className="md:flex">
             <img
               src="https://voila.id/cdn/shop/files/global-banner-gender-newarrival_x500.jpg?v=1701363995"
@@ -29,8 +27,6 @@ export default function Products() {
           <Card />
         </div>
       </div>
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }

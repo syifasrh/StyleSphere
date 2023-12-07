@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 export default function Slug() {
   return (
-    <section className="text-gray-700 body-font overflow-hidden bg-white">
+    <section className="text-gray-700 body-font overflow-hidden bg-green-100">
       <div className="container px-5 py-24 mx-auto">
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
           <img

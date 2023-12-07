@@ -61,10 +61,10 @@ export default function Register() {
           <div className="absolute bg-black opacity-60 inset-0 z-0" />
         </div>
         <div className="w-full py-6 z-20">
-          <h1 className="my-6 justify-center flex">
+          <Link href={"/"} className="my-6 justify-center flex">
             <img src="/i-logo.png" alt="" width={70} height={70} />
-          </h1>
-          <p className="text-green-100">Create your account</p>
+          </Link>
+          <p className="text-green-400">Create your account</p>
           <form action="" className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
             <div className="pb-2 pt-4">
               <input

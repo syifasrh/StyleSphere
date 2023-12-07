@@ -9,7 +9,7 @@ export default function Home() {
       {/* Navbar */}
       <Navbar />
       {/* Carousell */}
-      <div className="carousel carousel-center rounded-box my-10 h-96 mx-14 mt-24">
+      <div className="carousel carousel-center rounded-box my-10 h-96 mx-14 mt-24 shadow-lg">
         <div className="carousel-item bg-cover">
           <img
             src="https://voila.id/cdn/shop/files/9product-734814-DAAAI-2747-Xms-2023-09-13T2155130700_1200x1200.jpg?v=1694616949"
@@ -54,7 +54,7 @@ export default function Home() {
         </div>
       </div>
       <section className="container mx-auto p-10 px-0 md:p-10 md:py-10 md:px-0">
-        <section className="p-5 md:p-0 xl:grid xl:grid-cols-12 xl:grid-rows-6 xl:h-200">
+        <section className="p-5 md:p-0 xl:grid xl:grid-cols-12 xl:grid-rows-6 xl:h-200 shadow-xl">
           <section className="row-start-1 row-end-5 col-start-1 col-end-9 bg-orange-100">
             <article className="p-10 flex justify-between items-center h-full">
               <div className="space-y-5">
