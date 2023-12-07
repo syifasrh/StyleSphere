@@ -2,6 +2,7 @@
 import Card from "@/components/Card";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -145,9 +146,9 @@ export default function Home() {
           <Card />
         </div>
         <div className="flex justify-center">
-          <button className="p-2 px-6 w-52 bg-green-500 text-white rounded-md hover:bg-green-600">
+          <Link href={"/products"} className="p-2 px-6 w-52 bg-green-500 text-white rounded-md hover:bg-green-600">
             See More
-          </button>
+          </Link>
         </div>
       </div>
 
