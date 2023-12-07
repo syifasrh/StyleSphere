@@ -14,7 +14,10 @@ export interface WishlistModel {
 }
 
 export const getWishlistItems = async (): Promise<WishlistModel[]> => {
-  const wishlistItems = await db.collection(COLLECTION_NAME).find<WishlistModel>({}).toArray();
+  const wishlistItems = await db
+    .collection(COLLECTION_NAME)
+    .find<WishlistModel>({})
+    .toArray();
 
   return wishlistItems;
 };
@@ -33,14 +36,22 @@ export const getWishlistById = async (
   }
 };
 
-type WishlistItemInputModel = Omit<WishlistModel, "_id">;
+type WishlistInputModel = Omit<WishlistModel, "_id">;
 
 export const createWishlistItem = async (
-  newWishlistItem: WishlistItemInputModel
+  newWishlistItem: WishlistInputModel
 ): Promise<WishlistModel> => {
   const { insertedId } = await db
     .collection(COLLECTION_NAME)
     .insertOne(newWishlistItem);
 
   return { ...newWishlistItem, _id: insertedId };
-}
+};
+
+export const removeWishlistById = async (id: string): Promise<void> => {
+  try {
+    await db.collection(COLLECTION_NAME).deleteOne({ _id: new ObjectId(id) });
+  } catch (error) {
+    throw error;
+  }
+};
