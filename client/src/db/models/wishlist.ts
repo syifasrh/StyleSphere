@@ -14,7 +14,7 @@ export interface WishlistModel {
 }
 
 export const getWishlistItems = async (): Promise<WishlistModel[]> => {
-  const wishlistItems = await db.collection(COLLECTION_NAME).find({}).toArray();
+  const wishlistItems = await db.collection(COLLECTION_NAME).find<WishlistModel>({}).toArray();
 
   return wishlistItems;
 };
