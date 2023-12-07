@@ -33,19 +33,23 @@ export const POST = async (request: Request): Promise<Response> => {
       );
     }
 
-    const token = createToken({ _id: user._id, email: user.email });
+    const access_token = createToken({ _id: user._id, email: user.email });
 
     if (comparePass(password, user.password)) {
-      return NextResponse.json<ResponseInterface<never>>(
+      const resp = NextResponse.json<ResponseInterface<never>>(
         {
           statusCode: 200,
           message: "Login success",
-          token: `${token}`,
+          token: `${access_token}`,
         },
         {
           status: 200,
         }
       );
+      
+      resp.cookies.set("Authorization", `Bearer ${access_token}`);
+
+      return resp;
     } else {
       return NextResponse.json<ResponseInterface<never>>(
         {
