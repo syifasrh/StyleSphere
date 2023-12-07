@@ -4,6 +4,7 @@ export interface ResponseInterface<T> {
   statusCode: number;
   message?: string;
   error?: string;
+  token?: string;
   data?: T;
 }
 

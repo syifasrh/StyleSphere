@@ -1,4 +1,9 @@
-import { UserModel, createUser } from "@/db/models/users";
+import {
+  UserModel,
+  createUser,
+  getUserByEmail,
+  getUserByUsername,
+} from "@/db/models/users";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { ResponseInterface } from "../../route";
@@ -19,6 +24,33 @@ export const POST = async (request: Request): Promise<Response> => {
     const userParsed = UserSchema.safeParse(newUser);
 
     if (!userParsed.success) throw userParsed.error;
+
+    const existingUsername = await getUserByUsername(newUser.username);
+    if (existingUsername) {
+      return NextResponse.json<ResponseInterface<never>>(
+        {
+          statusCode: 401,
+          message: "Username is already taken!",
+          
+        },
+        {
+          status: 401,
+        }
+      );
+    }
+
+    const existingEmail = await getUserByEmail(newUser.email);
+    if (existingEmail) {
+      return NextResponse.json<ResponseInterface<never>>(
+        {
+          statusCode: 401,
+          message: "Email is already registered!",
+        },
+        {
+          status: 401,
+        }
+      );
+    }
 
     const user = await createUser(newUser);
 

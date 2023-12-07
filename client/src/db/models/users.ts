@@ -8,6 +8,7 @@ const db: Db = client.db(DATABASE_NAME);
 
 export interface UserModel {
   _id: ObjectId;
+  name: string;
   username: string;
   email: string;
   password: string;
@@ -50,4 +51,32 @@ export const createUser = async (
     .insertOne(newUser);
 
   return { ...newUser, _id: insertedId };
+};
+
+export const getUserByEmail = async (
+  email: string
+): Promise<UserModel | null> => {
+  try {
+    const user = await db
+      .collection(COLLECTION_NAME)
+      .findOne<UserModel>({ email: email });
+
+    return user;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getUserByUsername = async (
+  username: string
+): Promise<UserModel | null> => {
+  try {
+    const user = await db
+      .collection(COLLECTION_NAME)
+      .findOne<UserModel>({ username: username });
+
+    return user;
+  } catch (error) {
+    throw error;
+  }
 };
