@@ -3,8 +3,8 @@ import { NextResponse } from "next/server";
 import { ResponseInterface } from "../route";
 
 export const GET = async (): Promise<Response> => {
-  const users = getUser();
-  return NextResponse.json<ResponseInterface<UserModel>>(
+  const users = await getUser();
+  return NextResponse.json<ResponseInterface<UserModel[]>>(
     {
       statusCode: 200,
       message: "GET Users success!",
