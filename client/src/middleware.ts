@@ -3,7 +3,7 @@ import { verifyToken } from "./lib/jose";
 
 export async function middleware(request: NextRequest) {
   try {
-    if (request.nextUrl.pathname.startsWith("/api/products")) {
+    if (request.nextUrl.pathname.startsWith("/api/wishlist")) {
       const cookie = request.cookies.get("Authorization");
 
       if (!cookie) {
@@ -33,15 +33,15 @@ export async function middleware(request: NextRequest) {
       const data = decodedToken.payload as { _id: string; email: string };
 
       const reqHeaders = new Headers(request.headers);
-      reqHeaders.set("userId", data._id);
-      reqHeaders.set("userEmail", data.email);
+      reqHeaders.set("x-user-id", data._id);
+      reqHeaders.set("x-user-email", data.email);
 
       const response = NextResponse.next({
         request: {
           headers: reqHeaders,
         },
       });
-
+      
       return response;
     }
   } catch (error) {

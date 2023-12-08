@@ -28,13 +28,13 @@ export const getProducts = async (): Promise<ProductModel[]> => {
   return products;
 };
 
-export const getProductById = async (
-  id: string
+export const getProductBySlug = async (
+  slug: string
 ): Promise<ProductModel | null> => {
   try {
     const product = await db
       .collection(COLLECTION_NAME)
-      .findOne<ProductModel>({ _id: new ObjectId(id) });
+      .findOne<ProductModel>({ slug });
 
     return product;
   } catch (error) {
