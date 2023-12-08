@@ -31,20 +31,25 @@ export default function Products() {
     fetchData();
   }, []);
 
-  const searchHandler = async () => {
+  const searchHandler = async (searchValue: string) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/products/search?input=gg`
+        `http://localhost:3000/api/products/search?input=${searchValue}`
       );
       const newSearch = await response.json();
 
-      setProducts(newSearch);
-      return newSearch
+      if (Array.isArray(newSearch)) {
+        setProducts(newSearch);
+      } else {
+        console.error("Invalid data format received from search");
+      }
+
+      return newSearch;
     } catch (error) {
       throw error;
     }
   };
-  
+
   return (
     <div className="bg-green-100">
       <div className="py-32">

@@ -1,6 +1,18 @@
 "use client";
 
-export default function Search({ searchHandler } : {searchHandler: any}) {
+import { useState } from "react";
+
+export default function Search({ searchHandler }: { searchHandler: any }) {
+  const [value, setValue] = useState("");
+
+  const searchInput = async () => {
+    try {
+      return searchHandler(value);
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return (
     <div className="max-w-md mx-auto">
       <div className="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg shadow-md bg-white overflow-hidden">
@@ -24,7 +36,9 @@ export default function Search({ searchHandler } : {searchHandler: any}) {
           className="peer h-full w-full outline-0 text-sm text-gray-700 pr-2"
           type="text"
           id="search"
-          onChange={(e) => searchHandler(e.target.value)}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onBlur={searchInput}
           placeholder="Search something.."
         />
       </div>
