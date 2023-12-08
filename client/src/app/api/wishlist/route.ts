@@ -1,13 +1,35 @@
 import { NextRequest, NextResponse } from "next/server";
-import { WishlistModel, getWishlistByUserId, createWishlistItem, removeWishlistById } from "@/db/models/wishlist";
+import {
+  WishlistModel,
+  getWishlistByUserId,
+  createWishlistItem,
+  removeWishlistById,
+} from "@/db/models/wishlist";
 import { ResponseInterface } from "../route";
 
 export const GET = async (
-  _request: NextRequest,
-  { params: { userId } }: { params: { userId: string } }
+  request: NextRequest,
+  _response: NextResponse
 ): Promise<Response> => {
   try {
-    const wishlistItems = await getWishlistByUserId(userId);
+    const userIdFromCookie = request.cookies.get("userId");
+    const userIdFromHeaders = request.headers.get("x-user-id");
+
+    const userId = userIdFromHeaders || userIdFromCookie;
+
+    if (!userId) {
+      return NextResponse.json<ResponseInterface<WishlistModel[]>>(
+        {
+          statusCode: 401,
+          message: "User not authenticated!",
+        },
+        {
+          status: 401,
+        }
+      );
+    }
+
+    const wishlistItems = await getWishlistByUserId(userId as string);
 
     return NextResponse.json<ResponseInterface<WishlistModel[]>>(
       {
@@ -38,7 +60,10 @@ export const POST = async (
 ): Promise<Response> => {
   try {
     const newWishlistItem = await request.json();
-    const wishlistItem = await createWishlistItem({ ...newWishlistItem, userId });
+    const wishlistItem = await createWishlistItem({
+      ...newWishlistItem,
+      userId,
+    });
 
     return NextResponse.json<ResponseInterface<WishlistModel>>(
       {

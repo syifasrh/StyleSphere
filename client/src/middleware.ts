@@ -41,7 +41,6 @@ export async function middleware(request: NextRequest) {
           headers: reqHeaders,
         },
       });
-      console.log(response);
       
       return response;
     }
