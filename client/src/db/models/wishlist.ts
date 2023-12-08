@@ -13,24 +13,16 @@ export interface WishlistModel {
   updatedAt: Date;
 }
 
-export const getWishlistItems = async (): Promise<WishlistModel[]> => {
-  const wishlistItems = await db
-    .collection(COLLECTION_NAME)
-    .find<WishlistModel>({})
-    .toArray();
-
-  return wishlistItems;
-};
-
-export const getWishlistById = async (
-  id: string
-): Promise<WishlistModel | null> => {
+export const getWishlistByUserId = async (
+  userId: string
+): Promise<WishlistModel[]> => {
   try {
-    const wishlistItem = await db
+    const wishlistItems = await db
       .collection(COLLECTION_NAME)
-      .findOne<WishlistModel>({ _id: new ObjectId(id) });
+      .find<WishlistModel>({ userId: new ObjectId(userId) })
+      .toArray();
 
-    return wishlistItem;
+    return wishlistItems;
   } catch (error) {
     throw error;
   }

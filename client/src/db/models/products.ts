@@ -20,7 +20,10 @@ export interface ProductModel {
 }
 
 export const getProducts = async (): Promise<ProductModel[]> => {
-  const products = await db.collection(COLLECTION_NAME).find({}).toArray();
+  const products = await db
+    .collection(COLLECTION_NAME)
+    .find<ProductModel>({})
+    .toArray();
 
   return products;
 };
@@ -37,16 +40,4 @@ export const getProductById = async (
   } catch (error) {
     throw error;
   }
-};
-
-type ProductInputModel = Omit<ProductModel, "_id">;
-
-export const createProduct = async (
-  newProduct: ProductInputModel
-): Promise<ProductModel> => {
-  const { insertedId } = await db
-    .collection(COLLECTION_NAME)
-    .insertOne(newProduct);
-
-  return { ...newProduct, _id: insertedId };
 };
