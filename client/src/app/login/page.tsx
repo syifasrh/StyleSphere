@@ -33,6 +33,7 @@ export default function Login() {
 
     return redirect('/products')
   }
+  
   return (
     <section className="min-h-screen flex items-stretch text-white ">
       <div

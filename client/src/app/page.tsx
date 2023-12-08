@@ -143,7 +143,7 @@ export default function Home() {
         </h1>
         {/* Catalogue */}
         <div className="flex py-10 justify-around">
-          <Card />
+          {/* <Card item={item}/> */}
         </div>
         <div className="flex justify-center">
           <Link href={"/products"} className="p-2 px-6 w-52 bg-green-500 text-white rounded-md hover:bg-green-600">

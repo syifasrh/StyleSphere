@@ -3,27 +3,26 @@
 "use client";
 
 import AddWishlist from "./AddWhislist";
-import { ProductModel } from "@/db/models/products";
-import {useState, useEffect} from 'react'
+// import { ProductModel } from "@/db/models/products";
+import { useState, useEffect } from "react";
+// export default function Card({ item }: { item: ProductModel }) {
 
+export default function Card({ item}:{ item: any } ) {
+  // const [products, setProducts] = useState<ProductModel[]>([]);
 
-export default function Card() {
-  const [products, setProducts] = useState<ProductModel[]>([]);
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const response = await fetch("/api/products");
+  //       const data = await response.json();
+  //       setProducts(data.data);
+  //     } catch (error) {
+  //       console.error("Error fetching products:", error);
+  //     }
+  //   };
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch("/api/products");
-        const data = await response.json();
-        setProducts(data.data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    fetchProducts();
-  }, []);
-
+  //   fetchProducts();
+  // }, []);
 
   return (
     <div className="relative flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg transform duration-300 hxranslate-y-1 cursor-pointer hover:shadow-2xl group">
@@ -40,14 +39,14 @@ export default function Card() {
       <div className="p-6">
         <div className="mb-2 flex items-center justify-between">
           <p className="block font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased">
-            GG Marmont Matelassé Flap Shoulder Bag Rose Pink
+            {item.name}
           </p>
           <p className="block font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased">
-            Rp. 27.000.000,-
+            Rp. {item.price},-
           </p>
         </div>
         <p className="block font-sans text-sm font-normal leading-normal text-gray-700 antialiased opacity-75">
-          Luxurious and stylish design
+          {item.excerpt}
         </p>
       </div>
       <div className="p-6 pt-0">

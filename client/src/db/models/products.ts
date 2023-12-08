@@ -5,7 +5,7 @@ const DATABASE_NAME = process.env.DATABASE_NAME;
 const COLLECTION_NAME = "Products";
 const db: Db = client.db(DATABASE_NAME);
 
-export interface ProductModel {
+export interface  ProductModel {
   _id: ObjectId;
   name: string;
   slug: string;
@@ -19,13 +19,22 @@ export interface ProductModel {
   updatedAt: Date;
 }
 
-export const getProducts = async (): Promise<ProductModel[]> => {
-  const products = await db
-    .collection(COLLECTION_NAME)
-    .find<ProductModel>({})
-    .toArray();
+export const productPagination = async (
+  pageStart: number = 1,
+  pageSize: number = 5
+): Promise<ProductModel[]> => {
+  try {
+    const products = await db
+      .collection(COLLECTION_NAME)
+      .find<ProductModel>([])
+      .skip((pageStart - 1) * pageSize)
+      .limit(pageSize)
+      .toArray();
 
-  return products;
+    return products;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const getProductBySlug = async (
@@ -41,3 +50,5 @@ export const getProductBySlug = async (
     throw error;
   }
 };
+
+

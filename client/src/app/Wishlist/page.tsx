@@ -1,12 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import { Footer } from "@/components/Footer";
-import { Navbar } from "@/components/Navbar";
 import Wishlist from "@/components/Wishlist";
 
 export default function Cart() {
   return (
     <div>
-      <Navbar />
       <div className="h-screen bg-green-100 pt-20">
         <h1 className="mb-10 pt-10 text-center text-green-600 text-2xl font-bold">
           Cart Items
@@ -38,7 +35,6 @@ export default function Cart() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
