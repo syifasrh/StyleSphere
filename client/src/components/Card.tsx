@@ -3,8 +3,28 @@
 "use client";
 
 import AddWishlist from "./AddWhislist";
+import { ProductModel } from "@/db/models/products";
+import {useState, useEffect} from 'react'
+
 
 export default function Card() {
+  const [products, setProducts] = useState<ProductModel[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("/api/products");
+        const data = await response.json();
+        setProducts(data.data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+
   return (
     <div className="relative flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg transform duration-300 hxranslate-y-1 cursor-pointer hover:shadow-2xl group">
       <div className="relative mx-4 mt-4 h-96 overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700">
