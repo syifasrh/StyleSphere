@@ -33,11 +33,26 @@ type WishlistInputModel = Omit<WishlistModel, "_id">;
 export const createWishlistItem = async (
   newWishlistItem: WishlistInputModel
 ): Promise<WishlistModel> => {
-  const { insertedId } = await db
-    .collection(COLLECTION_NAME)
-    .insertOne(newWishlistItem);
+  try {
+    const existingItem = await db
+      .collection(COLLECTION_NAME)
+      .findOne<WishlistModel>({
+        userId: newWishlistItem.userId,
+        productId: newWishlistItem.productId,
+      });
 
-  return { ...newWishlistItem, _id: insertedId };
+    if (existingItem) {
+      return existingItem;
+    }
+
+    const { insertedId } = await db
+      .collection(COLLECTION_NAME)
+      .insertOne(newWishlistItem);
+
+    return { ...newWishlistItem, _id: insertedId };
+  } catch (error) {
+    throw error
+  }
 };
 
 export const removeWishlistById = async (id: string): Promise<void> => {

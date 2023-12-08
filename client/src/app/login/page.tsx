@@ -1,8 +1,38 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
+import { redirect } from "next/navigation";
 import Link from "next/link";
+import { cookies } from "next/headers";
 
 export default function Login() {
+  async function myAction(formData: FormData) {
+    "use server";
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    const response = await fetch("http://localhost:3000/api/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    const result = (await response.json()) as {
+      statusCode: number,
+      message: string,
+      token: string
+    };
+
+    if (!response.ok) redirect("/login?error=" + result.message);
+
+    cookies().set("Authorization", `Bearer ${result.token}`);
+
+    return redirect('/products')
+  }
   return (
     <section className="min-h-screen flex items-stretch text-white ">
       <div
@@ -72,8 +102,7 @@ export default function Login() {
             <img src="/i-logo.png" alt="" width={70} height={70} />
           </Link>
           <p className="text-green-400">Login to your account</p>
-          <form action="" className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
-            
+          <form action={myAction} className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
             <div className="pb-2 pt-4">
               <input
                 type="email"
@@ -92,7 +121,7 @@ export default function Login() {
                 placeholder="Password"
               />
             </div>
-            
+
             <div className="px-4 pb-2 pt-4">
               <button className="uppercase block w-full p-4 text-lg rounded-full bg-green-500 hover:bg-green-600 focus:outline-none">
                 sign in
