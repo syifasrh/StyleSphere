@@ -19,22 +19,14 @@ export interface  ProductModel {
   updatedAt: Date;
 }
 
-export const productPagination = async (
-  pageStart: number = 1,
-  pageSize: number = 5
-): Promise<ProductModel[]> => {
-  try {
-    const products = await db
-      .collection(COLLECTION_NAME)
-      .find<ProductModel>([])
-      .skip((pageStart - 1) * pageSize)
-      .limit(pageSize)
-      .toArray();
+export const getFeaturedProducts = async (): Promise<ProductModel[]> => {
+  const products = await db
+    .collection(COLLECTION_NAME)
+    .find<ProductModel>({})
+    .limit(10)
+    .toArray();
 
-    return products;
-  } catch (error) {
-    throw error;
-  }
+  return products;
 };
 
 export const getProductBySlug = async (
@@ -51,4 +43,39 @@ export const getProductBySlug = async (
   }
 };
 
+export const productPagination = async (
+  pageStart: number = 1,
+  pageSize: number = 5
+): Promise<ProductModel[]> => {
+  try {
+    const products = await db
+      .collection(COLLECTION_NAME)
+      .find<ProductModel>({})
+      .skip(0)
+      .limit(10)
+      .toArray();
 
+    return products;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const searchProductByName = async (
+  searchTerm: string
+): Promise<ProductModel[]> => {
+  try {
+    const regex = new RegExp(searchTerm, "i");
+
+    const products = await db
+      .collection(COLLECTION_NAME)
+      .find<ProductModel>({
+        name: { $regex: regex },
+      })
+      .toArray();
+
+    return products;
+  } catch (error) {
+    throw error;
+  }
+};

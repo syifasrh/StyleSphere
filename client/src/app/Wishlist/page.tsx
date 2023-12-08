@@ -2,6 +2,7 @@
 import Wishlist from "@/components/Wishlist";
 
 export default function Cart() {
+  
   return (
     <div>
       <div className="h-screen bg-green-100 pt-20">

@@ -10,28 +10,20 @@ import { ProductModel } from "@/db/models/products";
 
 export default function Products() {
   const [products, setProducts] = useState<ProductModel[]>([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
 
   const fetchData = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/api/products?page=${page}`,
-        {
-          method: "GET"
-        }
-      );
+      const response = await fetch(`http://localhost:3000/api/products`, {
+        method: "GET",
+      });
       const newProducts = await response.json();
-      setProducts((prevProducts) => [...prevProducts, ...newProducts]);
 
-      if (newProducts.length === 0) {
-        setHasMore(false);
-      } else {
-        setPage(page + 1);
-      }
+      setProducts((prevProducts) => [...prevProducts, ...newProducts.data]);
+
+      setHasMore(newProducts.data.length >= 10);
     } catch (error) {
-      console.error("Error fetching products:", error);
+      throw error;
     }
   };
 
@@ -39,9 +31,23 @@ export default function Products() {
     fetchData();
   }, []);
 
+  const searchHandler = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/products/search?input=gg`
+      );
+      const newSearch = await response.json();
+
+      setProducts(newSearch);
+      return newSearch
+    } catch (error) {
+      throw error;
+    }
+  };
+  
   return (
     <div className="bg-green-100">
-      <div className="py-32 mx-11">
+      <div className="py-32">
         <div className="max-w-lg mx-auto bg-white rounded-xl overflow-hidden md:max-w-5xl mb-10 shadow-lg">
           <div className="md:flex">
             <img
@@ -51,27 +57,30 @@ export default function Products() {
           </div>
         </div>
         <div className="mb-10">
-          <Search />
+          <Search searchHandler={searchHandler} />
         </div>
         {/* Card */}
-        <div className="flex justify-around">
-          <InfiniteScroll
-            dataLength={products.length}
-            next={fetchData}
-            hasMore={hasMore}
-            loader={<h4>Loading...</h4>}
-            endMessage={
-              <p style={{ textAlign: "center" }}>
-                <b>Yay! You have seen it all</b>
-              </p>
-            }
-          >
-            {products.map((item) => {
-              return <Card key={item._id.toString()} item={item} />;
-            })}
-          </InfiniteScroll>
-          ;
-        </div>
+        <InfiniteScroll
+          dataLength={products.length}
+          next={fetchData}
+          hasMore={hasMore}
+          loader={<img src="https://i.gifer.com/yy3.gif" className="mx-auto" />}
+          endMessage={
+            <p style={{ textAlign: "center" }}>
+              <b>Yay! You have seen it all</b>
+            </p>
+          }
+        >
+          <div className="flex justify-center">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
+              {products.map((item) => {
+                return (
+                  <Card key={item._id.toString()} item={item} product={item} />
+                );
+              })}
+            </div>
+          </div>
+        </InfiniteScroll>
       </div>
     </div>
   );

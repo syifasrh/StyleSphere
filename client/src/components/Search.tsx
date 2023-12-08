@@ -1,6 +1,6 @@
 "use client";
 
-export default function Search() {
+export default function Search({ searchHandler } : {searchHandler: any}) {
   return (
     <div className="max-w-md mx-auto">
       <div className="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg shadow-md bg-white overflow-hidden">
@@ -24,6 +24,7 @@ export default function Search() {
           className="peer h-full w-full outline-0 text-sm text-gray-700 pr-2"
           type="text"
           id="search"
+          onChange={(e) => searchHandler(e.target.value)}
           placeholder="Search something.."
         />
       </div>

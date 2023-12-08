@@ -1,10 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
+"use server";
+
 import Card from "@/components/Card";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import Link from "next/link";
 
-export default function Home() {
+const getData = async () => {
+  try {
+    const response = await fetch(`http://localhost:3000/api/products/featured`);
+    return response.json();
+  } catch (error) {
+    throw error;
+  }
+};
+
+export default async function Home() {
+  const res = await getData();
+
   return (
     <div className="bg-green-100">
       {/* Navbar */}
@@ -142,11 +155,18 @@ export default function Home() {
           Exclusive Series
         </h1>
         {/* Catalogue */}
-        <div className="flex py-10 justify-around">
-          {/* <Card item={item}/> */}
+        <div className="flex justify-center my-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
+            {res.data.map((value: any) => {
+              return <Card key={value._id} item={value} product={value} />;
+            })}
+          </div>
         </div>
         <div className="flex justify-center">
-          <Link href={"/products"} className="p-2 px-6 w-52 bg-green-500 text-white rounded-md hover:bg-green-600">
+          <Link
+            href={"/products"}
+            className="p-2 px-6 w-52 bg-green-500 text-white rounded-md hover:bg-green-600 text-center"
+          >
             See More
           </Link>
         </div>

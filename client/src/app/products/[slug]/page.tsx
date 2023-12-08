@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+
 import AddWishlist from "@/components/AddWhislist";
 import { ProductModel } from "@/db/models/products";
 import { priceFormat } from "@/helpers/formatPrice";
@@ -21,7 +22,6 @@ export default function Slug() {
   useEffect(() => {
     const asyncFunction = async () => {
       const data = await getProductSlug();
-      // console.log(data);
       setProductSlug(data);
     };
     asyncFunction();
@@ -155,7 +155,7 @@ export default function Slug() {
               <span className="title-font font-medium text-2xl text-gray-900">
                 {priceFormat(productSlug?.data?.price)}
               </span>
-              <div>
+              <div className="pl-10">
                 <AddWishlist />
               </div>
             </div>
