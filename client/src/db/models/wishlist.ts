@@ -13,6 +13,11 @@ export interface WishlistModel {
   updatedAt: Date;
 }
 
+export interface WishlistInputModel {
+  userId: ObjectId;
+  productId: ObjectId;
+}
+
 export const getWishlistByUserId = async (
   userId: string
 ): Promise<WishlistModel[]> => {
@@ -24,11 +29,9 @@ export const getWishlistByUserId = async (
 
     return wishlistItems;
   } catch (error) {
-    throw error;
+    throw new Error(`Error in getWishlistByUserId: ${error}`);
   }
 };
-
-type WishlistInputModel = Omit<WishlistModel, "_id">;
 
 export const createWishlistItem = async (
   newWishlistItem: WishlistInputModel
@@ -45,20 +48,35 @@ export const createWishlistItem = async (
       return existingItem;
     }
 
+    const wishlistItem: WishlistModel = {
+      ...newWishlistItem,
+      _id: new ObjectId(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+
     const { insertedId } = await db
       .collection(COLLECTION_NAME)
-      .insertOne(newWishlistItem);
+      .insertOne(wishlistItem);
 
-    return { ...newWishlistItem, _id: insertedId };
+    wishlistItem._id = insertedId;
+
+    return wishlistItem;
   } catch (error) {
-    throw error
+    throw error;
   }
 };
 
 export const removeWishlistById = async (id: string): Promise<void> => {
   try {
-    await db.collection(COLLECTION_NAME).deleteOne({ _id: new ObjectId(id) });
+    const result = await db
+      .collection(COLLECTION_NAME)
+      .deleteOne({ _id: new ObjectId(id) });
+
+    if (result.deletedCount === 0) {
+      throw new Error(`Wishlist with ID ${id} not found`);
+    }
   } catch (error) {
-    throw error;
+    throw new Error(`Error in removeWishlistById: ${error}`);
   }
 };

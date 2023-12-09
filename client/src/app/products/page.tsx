@@ -80,7 +80,7 @@ export default function Products() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
               {products.map((item) => {
                 return (
-                  <Card key={item._id.toString()} item={item} product={item} />
+                  <Card key={item._id.toString()} item={item} product={item} productId={item._id.toString()} />
                 );
               })}
             </div>

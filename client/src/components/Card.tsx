@@ -7,7 +7,13 @@ import AddWishlist from "./AddWhislist";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function Card({ item, product }: { item: any; product: any }) {
+interface CardProps {
+  item: any;
+  product: any;
+  productId: string;
+}
+
+export default function Card({ item, product, productId }: CardProps) {
   const pathname = usePathname();
 
   return (
@@ -35,7 +41,7 @@ export default function Card({ item, product }: { item: any; product: any }) {
         </div>
       </Link>
       <div className="p-6 pt-0">
-        <AddWishlist />
+        <AddWishlist productId={productId}/>
       </div>
     </div>
   );

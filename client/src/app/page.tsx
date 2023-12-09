@@ -158,7 +158,7 @@ export default async function Home() {
         <div className="flex justify-center my-10">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
             {res.data.map((value: any) => {
-              return <Card key={value._id} item={value} product={value} />;
+              return <Card key={value._id} item={value} product={value} productId={value} />;
             })}
           </div>
         </div>
