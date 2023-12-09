@@ -1,7 +1,10 @@
-import Link from "next/link";
+"use client";
 
+import Link from "next/link";
+import { ReactNode } from "react";
+import logoutHandler from "@/actions/logout";
 /* eslint-disable @next/next/no-img-element */
-export function Navbar() {
+export function Navbar({ children }: { children: ReactNode }) {
   return (
     <div>
       <nav
@@ -84,22 +87,18 @@ export function Navbar() {
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/login"
-                  className="flex items-center px-3 py-2 font-sans text-xs font-bold text-center uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block"
+                <button
+                  className="items-center hidden px-3 py-2 font-sans text-xs font-bold text-center uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block"
+                  onClick={() => logoutHandler()}
                 >
-                  <img
-                    src="/icon-black.png"
-                    alt="StyleSphere Logo"
-                    width={24}
-                    height={24}
-                  />
-                </Link>
+                  Sign Out
+                </button>
               </li>
             </ul>
           </div>
         </div>
       </nav>
+      {children}
     </div>
   );
 }

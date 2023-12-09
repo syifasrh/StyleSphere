@@ -1,16 +1,51 @@
+// Wishlist.tsx
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState } from "react";
 import Remove from "./Remove";
+import { WishlistItems } from "@/app/wishlist/page";
+import { priceFormat } from "@/helpers/formatPrice";
+import { ObjectId } from "mongodb";
 
-export default function Wishlist({ wishlistItems }: { wishlistItems: any[] }) {
-  const [wishlist, setWishlist] = useState(wishlistItems);
+interface WishlistProps {
+  wishlistItems: WishlistItems[];
+  setWishlistItems: React.Dispatch<React.SetStateAction<WishlistItems[]>>;
+}
 
-  const handleRemove = async (itemId: string) => {
-    setWishlist((prevWishlist) =>
-      prevWishlist.filter((item) => item._id !== itemId)
-    );
+export default function Wishlist({
+  wishlistItems,
+  setWishlistItems,
+}: WishlistProps) {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleRemove = async (itemId: ObjectId) => {
+    try {
+      setIsLoading(true);
+
+      const response = await fetch(
+        `http://localhost:3000/api/wishlist/${itemId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.ok) {
+        setWishlistItems((prevWishlist) =>
+          prevWishlist.filter((item) => item._id !== itemId)
+        );
+        console.log("Item removed successfully");
+      } else {
+        console.error("Failed to remove item from wishlist");
+      }
+    } catch (error) {
+      console.error("Error removing item from wishlist:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -33,27 +68,33 @@ export default function Wishlist({ wishlistItems }: { wishlistItems: any[] }) {
           </div>
         </div>
       ) : (
-        wishlistItems.map((item, index) => (
+        wishlistItems.map((wishlistItem, index) => (
           <div
             key={index}
             className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start"
           >
             <img
-              src={item.image}
-              className="w-full rounded-lg sm:w-40"
+              src={wishlistItem?.product?.images[0]}
+              className="w-full rounded-lg sm:w-40 h-40 object-cover"
               alt={`Product ${index + 1}`}
             />
             <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
               <div className="mt-5 sm:mt-0">
-                <h2 className="text-lg font-bold text-gray-900">{item.name}</h2>
-                <p className="mt-1 text-xs text-gray-700">{item.description}</p>
+                <h2 className="text-lg font-bold text-gray-900">
+                  {wishlistItem.product?.name}
+                </h2>
+                <p className="mt-1 text-xs text-gray-700">
+                  {wishlistItem.product?.description}
+                </p>
               </div>
               <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
                 <div className="flex items-center space-x-4">
-                  <p className="text-sm">{item.price}</p>
+                  <p className="text-sm">
+                    {priceFormat(wishlistItem.product?.price)}
+                  </p>
                   <Remove
-                    itemId={item._id}
-                    onRemove={() => handleRemove(item._id)}
+                    itemId={wishlistItem._id}
+                    handleRemove={handleRemove}
                   />
                 </div>
               </div>

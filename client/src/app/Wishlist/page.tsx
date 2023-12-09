@@ -2,51 +2,37 @@
 "use client";
 
 import Wishlist from "@/components/Wishlist";
-import { WishlistModel } from "@/db/models/wishlist";
+import { ProductModel } from "@/db/models/products";
+import { UserModel } from "@/db/models/users";
+import { ObjectId } from "mongodb";
 import { useEffect, useState } from "react";
 
-export default function Cart() {
-  const [wishlistItems, setWishlistItems] = useState<WishlistModel[]>([]);
+export interface WishlistItems {
+  _id: ObjectId;
+  userId: ObjectId;
+  user: UserModel[];
+  productId: ObjectId;
+  product: ProductModel;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export default function WishlistPage() {
+  const [wishlistItems, setWishlistItems] = useState<WishlistItems[]>([]);
 
   useEffect(() => {
-    const userIdFromCookie = document.cookie.replace(
-      /(?:(?:^|.*;\s*)userId\s*=\s*([^;]*).*$)|^.*$/,
-      "$1"
-    );
-
-    const userIdFromHeaders = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/api/wishlist");
-        const data = await response.json();
-
-        if (response.ok) {
-          return data.userId;
-        } else {
-          console.error("Failed to fetch user ID from headers");
-          return null;
-        }
-      } catch (error) {
-        console.error("Error fetching user ID from headers:", error);
-        return null;
-      }
-    };
-
     const fetchWishlist = async () => {
       try {
-        const userId = userIdFromCookie || (await userIdFromHeaders());
-
-        if (!userId) {
-          console.error("User ID is not available");
-          return;
-        }
-
-        const response = await fetch(
-          `http://localhost:3000/api/wishlist/${userId}`
-        );
-        const data = await response.json();
+        const response = await fetch(`http://localhost:3000/api/wishlist/`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const resp = await response.json();
 
         if (response.ok) {
-          setWishlistItems(data.data);
+          setWishlistItems(resp.data);
         } else {
           console.error("Failed to fetch wishlist data");
         }
@@ -60,13 +46,13 @@ export default function Cart() {
 
   return (
     <div>
-      <div className="h-screen bg-green-100 pt-20">
-        <h1 className="mb-10 pt-10 text-center text-green-600 text-2xl font-bold">
+      <div className="min-h-screen bg-green-100 py-20">
+        <h1 className="mb-10 pt-10 text-center text-green-600 text-2xl font-bold container mx-auto max-w-5xl px-6 md:justify-center md:flex md:space-x-6 xl:px-0">
           Wishlist Items
         </h1>
         <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
           {/* component wishlist */}
-          <Wishlist wishlistItems={wishlistItems}/>
+          <Wishlist wishlistItems={wishlistItems} setWishlistItems={setWishlistItems} />
         </div>
       </div>
     </div>

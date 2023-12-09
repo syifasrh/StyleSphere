@@ -12,7 +12,7 @@ export default function WishlistLayout({
     <>
       <PortectedPage>
         <Navbar />
-        {children}
+        <div className="flex-grow overflow-y-auto">{children}</div>
         <Footer />
       </PortectedPage>
     </>

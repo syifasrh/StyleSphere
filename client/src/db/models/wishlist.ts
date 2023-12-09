@@ -22,10 +22,32 @@ export const getWishlistByUserId = async (
   userId: string
 ): Promise<WishlistModel[]> => {
   try {
-    const wishlistItems = await db
+    const wishlistItems = (await db
       .collection(COLLECTION_NAME)
-      .find<WishlistModel>({ userId: new ObjectId(userId) })
-      .toArray();
+      .aggregate([
+        {
+          $match: { userId: new ObjectId(userId) },
+        },
+        {
+          $lookup: {
+            from: "Users",
+            localField: "userId",
+            foreignField: "_id",
+            as: "user",
+          },
+        },
+        {
+          $lookup: {
+            from: "Products",
+            localField: "productId",
+            foreignField: "_id",
+            as: "product",
+          },
+        },
+        { $set: { user: { $first: "$user" } } },
+        { $set: { product: { $first: "$product" } } },
+      ])
+      .toArray()) as WishlistModel[];
 
     return wishlistItems;
   } catch (error) {

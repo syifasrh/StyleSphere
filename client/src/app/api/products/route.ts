@@ -19,8 +19,6 @@ export const GET = async (): Promise<Response> => {
       }
     );
   } catch (error) {
-    console.log(error);
-
     throw error;
   }
 };

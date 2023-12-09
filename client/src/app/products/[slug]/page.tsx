@@ -6,10 +6,11 @@ import { ProductModel } from "@/db/models/products";
 import { priceFormat } from "@/helpers/formatPrice";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router"; 
 
 export default function Slug() {
   const { slug } = useParams();
-
+  const productId = Array.isArray(slug) ? slug[0] : slug;
   const [productSlug, setProductSlug] = useState<ProductModel | any>({});
 
   async function getProductSlug() {
@@ -26,7 +27,6 @@ export default function Slug() {
     };
     asyncFunction();
   }, []);
-  console.log(productSlug?.data?.name, "wwkwk");
 
   return (
     <section className="text-gray-700 body-font overflow-hidden bg-green-100">
@@ -156,7 +156,7 @@ export default function Slug() {
                 {priceFormat(productSlug?.data?.price)}
               </span>
               <div className="pl-10">
-                <AddWishlist />
+                <AddWishlist productId={productId}/>
               </div>
             </div>
           </div>

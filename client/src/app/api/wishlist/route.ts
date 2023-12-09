@@ -44,8 +44,6 @@ export const GET = async (
       }
     );
   } catch (error) {
-    console.log(error);
-
     return NextResponse.json<ResponseInterface<WishlistModel[]>>(
       {
         statusCode: 500,
@@ -63,10 +61,12 @@ export const POST = async (
   _response: NextResponse
 ): Promise<Response> => {
   try {
-    const userIdFromCookie = request.cookies.get("userId");
+    const userIdFromCookie = request.cookies.get("userId");    
     const userIdFromHeaders = request.headers.get("x-user-id");
 
     const userId = userIdFromHeaders || userIdFromCookie;
+    console.log(userId, 'usrr');
+    
 
     if (!userId) {
       return NextResponse.json<ResponseInterface<WishlistModel>>(
@@ -100,8 +100,6 @@ export const POST = async (
       }
     );
   } catch (error) {
-    console.log(error);
-
     return NextResponse.json<ResponseInterface<WishlistModel>>(
       {
         statusCode: 500,
@@ -134,7 +132,7 @@ export const DELETE = async (
     return NextResponse.json<ResponseInterface<never>>(
       {
         statusCode: 500,
-        message: "Internal server error!",
+        message: `Internal server error: ${error}`,
       },
       {
         status: 500,

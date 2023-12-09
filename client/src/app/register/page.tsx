@@ -1,9 +1,42 @@
 /* eslint-disable @next/next/no-img-element */
-"use client";
-
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { BASE_URL } from "../BaseURL";
+
+export type Response<T = {}> = {
+  data?: T;
+  messsage?: string;
+};
 
 export default function Register() {
+  const handleRegister = async (formData: FormData) => {
+    "use server";
+    const name = formData.get("name");
+    const username = formData.get("username");
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    const response = await fetch(`${BASE_URL}/api/users/register/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        username,
+        email,
+        password,
+      }),
+    });
+
+    const result = (await response.json()) as Response;
+
+    if (!response.ok) {
+      return redirect("register?error=" + result.messsage);
+    }
+    return redirect("/login");
+  };
+
   return (
     <section className="min-h-screen flex items-stretch text-white ">
       <div
@@ -65,7 +98,7 @@ export default function Register() {
             <img src="/i-logo.png" alt="" width={70} height={70} />
           </Link>
           <p className="text-green-400">Create your account</p>
-          <form action="" className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+          <form action={handleRegister} className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
             <div className="pb-2 pt-4">
               <input
                 type="text"

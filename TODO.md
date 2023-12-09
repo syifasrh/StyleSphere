@@ -57,7 +57,7 @@ Silahkan setup project aplikasi kamu:
 Implementasikan CSR dan SSR pada pada halaman-halaman dan komponen-komponen yang sudah dibuat dengan detail sebagai berikut:
 
 - [ ] Halaman register: /register
-- [ ] Halaman login: /login
+- [x] Halaman login: /login
 - [x] Halaman home: / (SSR)
 - [x] Halaman product: /products (CSR)
   - [x] Komponen List Product (CSR)
@@ -77,14 +77,14 @@ Implementasikan CSR dan SSR pada pada halaman-halaman dan komponen-komponen yang
 ### NEXT.js Route Handler
 
 - [x] Install MongoDB database pada komputer kamu atau menggunakan MongoDB Atlas
-- [ ] Lakukan wiring dan validasi terhadap halaman-halaman dan komponen-komponen yang sudah dibuat.
-  - [ ] Halaman register: /register
-    - [ ] username:string (validation: required, unique)
-    - [ ] email:string  (validation: required, unique, email format)
-    - [ ] password:string  (validation: required, length min 5)
-  - [ ] Halaman login: /login
-    - [ ] email:string  (validation: required, email format)
-    - [ ] password:string  (validation: required)
+- [x] Lakukan wiring dan validasi terhadap halaman-halaman dan komponen-komponen yang sudah dibuat.
+  - [x] Halaman register: /register
+    - [x] username:string (validation: required, unique)
+    - [x] email:string  (validation: required, unique, email format)
+    - [x] password:string  (validation: required, length min 5)
+  - [x] Halaman login: /login
+    - [x] email:string  (validation: required, email format)
+    - [x] password:string  (validation: required)
   - [ ] Halaman home: / (SSR)
     - [ ] Halaman product: /products
     - [ ] Fitur List Product

@@ -2,19 +2,17 @@
 
 import { useState } from "react";
 import { useToast } from "@chakra-ui/react";
-import { useRouter } from "next/router";
 
 export default function AddWishlist({ productId }: { productId: string }) {
   const [isAdding, setIsAdding] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
   const toast = useToast();
-  const router = useRouter();
 
   const handleAddWishlist = async () => {
     try {
       setIsAdding(true);
 
-      const response = await fetch("/api/wishlist", {
+      const response = await fetch("http://localhost:3000/api/wishlist", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -30,11 +28,7 @@ export default function AddWishlist({ productId }: { productId: string }) {
           isClosable: true,
         });
 
-        // Set state untuk menandai bahwa wishlist sudah ditambahkan
         setIsAdded(true);
-
-        // Redirect ke halaman wishlist
-        router.push("/wishlist");
       } else {
         toast({
           title: "Failed to add to wishlist",
