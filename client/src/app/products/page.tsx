@@ -36,17 +36,18 @@ export default function Products() {
       const response = await fetch(
         `http://localhost:3000/api/products/search?input=${searchValue}`
       );
-      const newSearch = await response.json();
+      const searchData = await response.json();
 
-      if (Array.isArray(newSearch)) {
-        setProducts(newSearch);
+      if (searchData.data !== undefined) {
+        setProducts(searchData.data);
       } else {
         console.error("Invalid data format received from search");
       }
 
-      return newSearch;
+      return searchData;
     } catch (error) {
-      throw error;
+      console.error("Error searching products:", error);
+      return null;
     }
   };
 

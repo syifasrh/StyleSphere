@@ -1,5 +1,6 @@
 import { Db, ObjectId } from "mongodb";
 import { client } from "../config/mongo";
+import { ResponseInterface } from "@/app/api/route";
 
 const DATABASE_NAME = process.env.DATABASE_NAME;
 const COLLECTION_NAME = "Products";
@@ -62,8 +63,10 @@ export const productPagination = async (
 };
 
 export const searchProductByName = async (
-  searchTerm: string
-): Promise<ProductModel[]> => {
+  searchTerm: string,
+  pageStart: number = 1,
+  pageSize: number = 10
+): Promise<ProductModel[] | undefined> => {
   try {
     const regex = new RegExp(searchTerm, "i");
 
@@ -72,10 +75,13 @@ export const searchProductByName = async (
       .find<ProductModel>({
         name: { $regex: regex },
       })
+      .skip((pageStart - 1) * pageSize)
+      .limit(pageSize)
       .toArray();
 
     return products;
   } catch (error) {
-    throw error;
+    console.error("Error searching products by name:", error);
+    return undefined;
   }
 };

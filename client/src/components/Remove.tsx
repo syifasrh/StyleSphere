@@ -12,8 +12,12 @@ export const Remove: React.FC<RemoveProps> = ({ handleRemove }) => {
 
   const handleClick = async () => {
     try {
+      console.log("MASUKKK");
+      
       setIsLoading(true);
-      await handleRemove();
+      const resp = await handleRemove();
+      console.log("INI RESPONSE>>>" , resp);
+      
     } catch (error) {
       console.error("Error removing item:", error);
     } finally {
