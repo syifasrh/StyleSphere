@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import logoutHandler from "@/actions/logout";
 /* eslint-disable @next/next/no-img-element */
-export function Navbar({ children }: { children: ReactNode }) {
+export function Navbar() {
   return (
     <div>
       <nav
@@ -98,7 +98,6 @@ export function Navbar({ children }: { children: ReactNode }) {
           </div>
         </div>
       </nav>
-      {children}
     </div>
   );
 }

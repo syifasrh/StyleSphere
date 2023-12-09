@@ -1,24 +1,24 @@
 // Remove.tsx
 "use client";
 
-import { ObjectId } from "mongodb";
-import { useState } from "react";
+import React, { useState } from "react";
 
 interface RemoveProps {
-  itemId: ObjectId;
-  handleRemove: (itemId: ObjectId) => void;
+  handleRemove: () => Promise<void>;
 }
 
-export default function Remove({ itemId, handleRemove }: RemoveProps) {
+export const Remove: React.FC<RemoveProps> = ({ handleRemove }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = async () => {
     try {
       setIsLoading(true);
-      console.log("Removing item with ID:", itemId);
-      await handleRemove(itemId);
+      await handleRemove();
+    } catch (error) {
+      console.error("Error removing item:", error);
     } finally {
       setIsLoading(false);
+      window.location.reload();
     }
   };
 

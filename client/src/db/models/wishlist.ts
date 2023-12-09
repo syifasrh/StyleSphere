@@ -89,15 +89,19 @@ export const createWishlistItem = async (
   }
 };
 
-export const removeWishlistById = async (id: string): Promise<void> => {
-  try {
-    const result = await db
-      .collection(COLLECTION_NAME)
-      .deleteOne({ _id: new ObjectId(id) });
+type WishlistBody = Omit<
+  WishlistModel,
+  "_id" | "product" | "user" | "createdAt" | "updatedAt"
+>;
 
-    if (result.deletedCount === 0) {
-      throw new Error(`Wishlist with ID ${id} not found`);
-    }
+export const removeWishlistById = async (data: WishlistBody) => {
+  try {
+    const result = await db.collection(COLLECTION_NAME).deleteOne({
+      userId: data.userId,
+      productId: data.productId,
+    });
+
+    return result;
   } catch (error) {
     throw new Error(`Error in removeWishlistById: ${error}`);
   }

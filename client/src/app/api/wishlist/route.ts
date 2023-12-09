@@ -8,6 +8,8 @@ import {
 } from "@/db/models/wishlist";
 import { ResponseInterface } from "../route";
 import { ObjectId } from "mongodb";
+import { cookies } from "next/headers";
+import { verifyToken } from "@/lib/jose";
 
 export const GET = async (
   request: NextRequest,
@@ -61,12 +63,11 @@ export const POST = async (
   _response: NextResponse
 ): Promise<Response> => {
   try {
-    const userIdFromCookie = request.cookies.get("userId");    
+    const userIdFromCookie = request.cookies.get("userId");
     const userIdFromHeaders = request.headers.get("x-user-id");
 
     const userId = userIdFromHeaders || userIdFromCookie;
-    console.log(userId, 'usrr');
-    
+    console.log(userId, "usrr");
 
     if (!userId) {
       return NextResponse.json<ResponseInterface<WishlistModel>>(
@@ -112,30 +113,74 @@ export const POST = async (
   }
 };
 
-export const DELETE = async (
-  _request: NextRequest,
-  { params: { id } }: { params: { id: string } }
-): Promise<Response> => {
+export const DELETE = async (request: NextRequest) => {
   try {
-    await removeWishlistById(id);
+    const authorization = request.cookies.get("Authorization");
 
-    return NextResponse.json<ResponseInterface<never>>(
-      {
-        statusCode: 204,
-        message: "DELETE Wishlist item success!",
-      },
-      {
-        status: 204,
-      }
-    );
+    if (!authorization) {
+      return NextResponse.json(
+        {
+          message: "Authentication failed",
+        },
+        {
+          status: 401,
+        }
+      );
+    }
+    const { productId } = (await request.json()) as {
+      productId: string;
+    };
+    const token = authorization.value.split(" ")[1];
+    if (!token || authorization.value.split(" ")[0] !== "Bearer") {
+      return Response.json(
+        {
+          statusCode: 401,
+          message: "Invalid Token",
+        },
+        {
+          status: 401,
+        }
+      );
+    }
+    const decodedToken = await verifyToken(token);
+    const data = decodedToken.payload as { _id: string; email: string };
+    const userId = data._id;
+
+    const deleteItem = await removeWishlistById({
+      userId: new ObjectId(userId),
+      productId: new ObjectId(productId),
+    });
+
+    if (deleteItem.deletedCount > 0) {
+      return Response.json(
+        {
+          statusCode: 200,
+          message: "Wishlist removed successfully",
+          data: deleteItem,
+        },
+        {
+          status: 200,
+        }
+      );
+    } else {
+      return Response.json(
+        {
+          statusCode: 404,
+          message: "Wishlist not found or already removed",
+        },
+        {
+          status: 404,
+        }
+      );
+    }
   } catch (error) {
-    return NextResponse.json<ResponseInterface<never>>(
+    return Response.json(
       {
-        statusCode: 500,
-        message: `Internal server error: ${error}`,
+        statusCode: 404,
+        message: "Wishlist not found or already removed",
       },
       {
-        status: 500,
+        status: 404,
       }
     );
   }

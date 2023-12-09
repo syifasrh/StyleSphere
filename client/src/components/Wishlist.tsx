@@ -3,10 +3,11 @@
 "use client";
 
 import { useState } from "react";
-import Remove from "./Remove";
+import { Remove } from "./Remove";
 import { WishlistItems } from "@/app/wishlist/page";
 import { priceFormat } from "@/helpers/formatPrice";
 import { ObjectId } from "mongodb";
+import { BASE_URL } from "@/app/BaseURL";
 
 interface WishlistProps {
   wishlistItems: WishlistItems[];
@@ -19,25 +20,24 @@ export default function Wishlist({
 }: WishlistProps) {
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleRemove = async (itemId: ObjectId) => {
+  const handleRemove = async (productId: ObjectId) => {
     try {
       setIsLoading(true);
 
-      const response = await fetch(
-        `http://localhost:3000/api/wishlist/${itemId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(`${BASE_URL}/api/wishlist/`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ productId }),
+      });
 
       if (response.ok) {
-        setWishlistItems((prevWishlist) =>
-          prevWishlist.filter((item) => item._id !== itemId)
-        );
-        console.log("Item removed successfully");
+        console.log("Item berhasil dihapus dari wishlist!");
+        const newWishlist = wishlistItems.filter(
+          (item) => item?._id !== productId
+        )
+        setWishlistItems(newWishlist);
       } else {
         console.error("Failed to remove item from wishlist");
       }
@@ -92,10 +92,7 @@ export default function Wishlist({
                   <p className="text-sm">
                     {priceFormat(wishlistItem.product?.price)}
                   </p>
-                  <Remove
-                    itemId={wishlistItem._id}
-                    handleRemove={handleRemove}
-                  />
+                  <Remove handleRemove={() => handleRemove(wishlistItem._id)} />
                 </div>
               </div>
             </div>
