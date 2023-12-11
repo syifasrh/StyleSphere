@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { ProductModel } from "@/db/models/products";
 import { BASE_URL } from "../BaseURL";
 
+export const dynamic = 'force-dynamic';
 
 export default function Products() {
   const [products, setProducts] = useState<ProductModel[]>([]);

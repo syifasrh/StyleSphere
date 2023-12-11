@@ -31,7 +31,7 @@ export default function Login() {
 
     if (!response.ok) redirect("/login?error=" + result.message);
 
-    cookies().set("Authorization", `Bearer ${result.token}`);
+    await cookies().set("Authorization", `Bearer ${result.token}`);
 
     return redirect('/products')
   }

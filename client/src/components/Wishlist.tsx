@@ -4,10 +4,11 @@
 
 import { useState } from "react";
 import { Remove } from "./Remove";
-import { WishlistItems } from "@/app/wishlist/page";
 import { priceFormat } from "@/helpers/formatPrice";
-import { ObjectId } from "mongodb";
 import { BASE_URL } from "@/app/BaseURL";
+import { WishlistItems } from "@/app/wishlist/page";
+
+export const dynamic = 'force-dynamic';
 
 interface WishlistProps {
   wishlistItems: WishlistItems[];

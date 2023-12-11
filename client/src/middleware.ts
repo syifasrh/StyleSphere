@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyToken } from "./lib/jose";
-// export const dynamic = 'force-static'
+export const dynamic = 'force-dynamic';
 
 export async function middleware(request: NextRequest) {
   try {

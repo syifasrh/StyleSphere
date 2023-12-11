@@ -3,6 +3,8 @@ import { ProductModel, searchProductByName } from "@/db/models/products";
 import { ResponseInterface } from "../../route";
 import { URL } from "url";
 
+export const dynamic = "force-dynamic";
+
 export const GET = async (req: NextRequest): Promise<Response> => {
   try {
     const url = new URL(req.url)
