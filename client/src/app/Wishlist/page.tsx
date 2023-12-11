@@ -2,9 +2,21 @@
 "use client";
 
 import Wishlist from "@/components/Wishlist";
+import { ProductModel } from "@/db/models/products";
+import { UserModel } from "@/db/models/users";
+import { ObjectId } from "mongodb";
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../BaseURL";
-import { WishlistItems } from "@/app/wishlist/wishlist-types"; 
+
+export interface WishlistItems {
+  _id: ObjectId;
+  userId: ObjectId;
+  user: UserModel[];
+  productId: ObjectId;
+  product: ProductModel;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 export default function WishlistPage() {
   const [wishlistItems, setWishlistItems] = useState<WishlistItems[]>([]);
