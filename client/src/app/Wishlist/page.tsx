@@ -8,7 +8,7 @@ import { ObjectId } from "mongodb";
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../BaseURL";
 
-export interface WishlistItems {
+interface WishlistItems {
   _id: ObjectId;
   userId: ObjectId;
   user: UserModel[];

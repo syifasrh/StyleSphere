@@ -4,9 +4,21 @@
 
 import { useState } from "react";
 import { Remove } from "./Remove";
-import { WishlistItems } from "@/app/wishlist/page";
 import { priceFormat } from "@/helpers/formatPrice";
 import { BASE_URL } from "@/app/BaseURL";
+import { ObjectId } from "mongodb";
+import { UserModel } from "@/db/models/users";
+import { ProductModel } from "@/db/models/products";
+
+interface WishlistItems {
+  _id: ObjectId;
+  userId: ObjectId;
+  user: UserModel[];
+  productId: ObjectId;
+  product: ProductModel;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 interface WishlistProps {
   wishlistItems: WishlistItems[];
