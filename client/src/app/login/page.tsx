@@ -3,6 +3,8 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { cookies } from "next/headers";
+import { BASE_URL } from "../BaseURL";
+
 
 export default function Login() {
   async function myAction(formData: FormData) {
@@ -10,7 +12,7 @@ export default function Login() {
     const email = formData.get("email");
     const password = formData.get("password");
 
-    const response = await fetch("http://localhost:3000/api/users/login", {
+    const response = await fetch(`${BASE_URL}/api/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

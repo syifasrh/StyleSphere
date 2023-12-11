@@ -7,6 +7,8 @@ import Search from "@/components/Search";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useState, useEffect } from "react";
 import { ProductModel } from "@/db/models/products";
+import { BASE_URL } from "../BaseURL";
+
 
 export default function Products() {
   const [products, setProducts] = useState<ProductModel[]>([]);
@@ -14,7 +16,7 @@ export default function Products() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/products`, {
+      const response = await fetch(`${BASE_URL}/api/products`, {
         method: "GET",
       });
       const newProducts = await response.json();
@@ -34,7 +36,7 @@ export default function Products() {
   const searchHandler = async (searchValue: string) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/products/search?input=${searchValue}`
+        `${BASE_URL}/api/products/search?input=${searchValue}`
       );
       const searchData = await response.json();
       console.log("DATAAAAAA" ,searchData);

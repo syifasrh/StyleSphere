@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useToast } from "@chakra-ui/react";
+import { BASE_URL } from "@/app/BaseURL";
 
 export default function AddWishlist({ productId }: { productId: string }) {
   const [isAdding, setIsAdding] = useState(false);
@@ -12,7 +13,7 @@ export default function AddWishlist({ productId }: { productId: string }) {
     try {
       setIsAdding(true);
 
-      const response = await fetch("http://localhost:3000/api/wishlist", {
+      const response = await fetch(`${BASE_URL}/api/wishlist`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

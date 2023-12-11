@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import { BASE_URL } from "@/app/BaseURL";
 import AddWishlist from "@/components/AddWhislist";
 import { ProductModel } from "@/db/models/products";
 import { priceFormat } from "@/helpers/formatPrice";
@@ -13,7 +14,7 @@ export default function Slug() {
   const [productSlug, setProductSlug] = useState<ProductModel | any>({});
 
   const getProductSlug = useCallback(async () => {
-    const response = await fetch(`http://localhost:3000/api/products/${slug}`);
+    const response = await fetch(`${BASE_URL}/api/products/${slug}`);
     const product = await response.json();
     return product;
   }, [slug]);

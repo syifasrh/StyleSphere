@@ -5,10 +5,11 @@ import Card from "@/components/Card";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import Link from "next/link";
+import { BASE_URL } from "./BaseURL";
 
 const getData = async () => {
   try {
-    const response = await fetch(`http://localhost:3000/api/products/featured`);
+    const response = await fetch(`${BASE_URL}/api/products/featured`);
     return response.json();
   } catch (error) {
     throw error;

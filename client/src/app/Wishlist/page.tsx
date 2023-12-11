@@ -6,6 +6,7 @@ import { ProductModel } from "@/db/models/products";
 import { UserModel } from "@/db/models/users";
 import { ObjectId } from "mongodb";
 import { useEffect, useState } from "react";
+import { BASE_URL } from "../BaseURL";
 
 export interface WishlistItems {
   _id: ObjectId;
@@ -23,7 +24,7 @@ export default function WishlistPage() {
   useEffect(() => {
     const fetchWishlist = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/wishlist/`, {
+        const response = await fetch(`${BASE_URL}/api/wishlist/`, {
           method: "GET",
           cache: "no-store",
           headers: {
