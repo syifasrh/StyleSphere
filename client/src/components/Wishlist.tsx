@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Remove } from "./Remove";
 import { priceFormat } from "@/helpers/formatPrice";
 import { BASE_URL } from "@/app/BaseURL";
-import { WishlistItems } from "@/app/wishlist/page";
+import { WishlistItems } from "@/app/wishlist/wishlist-types";
 
 export const dynamic = 'force-dynamic';
 
