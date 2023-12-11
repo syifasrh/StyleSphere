@@ -1,6 +1,7 @@
 // Remove.tsx
 "use client";
 
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 interface RemoveProps {
@@ -9,6 +10,7 @@ interface RemoveProps {
 
 export const Remove: React.FC<RemoveProps> = ({ handleRemove }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const navigation = useRouter()
 
   const handleClick = async () => {
     try {
@@ -22,7 +24,8 @@ export const Remove: React.FC<RemoveProps> = ({ handleRemove }) => {
       console.error("Error removing item:", error);
     } finally {
       setIsLoading(false);
-      window.location.reload();
+      navigation.refresh()
+      // window.location.reload();
     }
   };
 

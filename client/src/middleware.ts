@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyToken } from "./lib/jose";
+// export const dynamic = 'force-static'
 
 export async function middleware(request: NextRequest) {
   try {
@@ -41,7 +42,7 @@ export async function middleware(request: NextRequest) {
           headers: reqHeaders,
         },
       });
-      
+
       return response;
     }
   } catch (error) {

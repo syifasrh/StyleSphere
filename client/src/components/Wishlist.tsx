@@ -20,7 +20,7 @@ export default function Wishlist({
 }: WishlistProps) {
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleRemove = async (productId: ObjectId) => {
+  const handleRemove = async (productId: string) => {
     try {
       setIsLoading(true);
 
@@ -35,7 +35,7 @@ export default function Wishlist({
       if (response.ok) {
         console.log("Item berhasil dihapus dari wishlist!");
         const newWishlist = wishlistItems.filter(
-          (item) => item?._id !== productId
+          (item) => item?._id.toString() !== productId
         )
         setWishlistItems(newWishlist);
       } else {
@@ -92,7 +92,7 @@ export default function Wishlist({
                   <p className="text-sm">
                     {priceFormat(wishlistItem.product?.price)}
                   </p>
-                  <Remove handleRemove={() => handleRemove(wishlistItem._id)} />
+                  <Remove handleRemove={() => handleRemove(wishlistItem._id.toString())} />
                 </div>
               </div>
             </div>

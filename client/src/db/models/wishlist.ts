@@ -97,8 +97,7 @@ type WishlistBody = Omit<
 export const removeWishlistById = async (data: WishlistBody) => {
   try {
     const result = await db.collection(COLLECTION_NAME).deleteOne({
-      userId: data.userId,
-      productId: data.productId,
+      _id: data.productId,
     });
 
     return result;

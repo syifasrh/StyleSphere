@@ -25,6 +25,7 @@ export default function WishlistPage() {
       try {
         const response = await fetch(`http://localhost:3000/api/wishlist/`, {
           method: "GET",
+          cache: "no-store",
           headers: {
             "Content-Type": "application/json",
           },

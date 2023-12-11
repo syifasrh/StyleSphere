@@ -5,28 +5,27 @@ import AddWishlist from "@/components/AddWhislist";
 import { ProductModel } from "@/db/models/products";
 import { priceFormat } from "@/helpers/formatPrice";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router"; 
+import { useCallback, useEffect, useState } from "react";
 
 export default function Slug() {
   const { slug } = useParams();
   const productId = Array.isArray(slug) ? slug[0] : slug;
   const [productSlug, setProductSlug] = useState<ProductModel | any>({});
 
-  async function getProductSlug() {
+  const getProductSlug = useCallback(async () => {
     const response = await fetch(`http://localhost:3000/api/products/${slug}`);
     const product = await response.json();
-
     return product;
-  }
+  }, [slug]);
 
   useEffect(() => {
-    const asyncFunction = async () => {
+    const fetchData = async () => {
       const data = await getProductSlug();
       setProductSlug(data);
     };
-    asyncFunction();
-  }, []);
+
+    fetchData();
+  }, [getProductSlug]);
 
   return (
     <section className="text-gray-700 body-font overflow-hidden bg-green-100">

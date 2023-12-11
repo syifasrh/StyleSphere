@@ -37,6 +37,8 @@ export default function Products() {
         `http://localhost:3000/api/products/search?input=${searchValue}`
       );
       const searchData = await response.json();
+      console.log("DATAAAAAA" ,searchData);
+      
 
       if (searchData.data !== undefined) {
         setProducts(searchData.data);

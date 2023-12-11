@@ -8,8 +8,9 @@ import {
 } from "@/db/models/wishlist";
 import { ResponseInterface } from "../route";
 import { ObjectId } from "mongodb";
-import { cookies } from "next/headers";
 import { verifyToken } from "@/lib/jose";
+
+// export const dynamic = 'force-static'
 
 export const GET = async (
   request: NextRequest,
@@ -67,7 +68,6 @@ export const POST = async (
     const userIdFromHeaders = request.headers.get("x-user-id");
 
     const userId = userIdFromHeaders || userIdFromCookie;
-    console.log(userId, "usrr");
 
     if (!userId) {
       return NextResponse.json<ResponseInterface<WishlistModel>>(
