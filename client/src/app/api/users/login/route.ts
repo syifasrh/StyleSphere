@@ -5,6 +5,8 @@ import { ResponseInterface } from "../../route";
 import { comparePass } from "@/db/utils/hash";
 import { createToken } from "@/lib/jwt";
 
+export const dynamic = "force-dynamic";
+
 const LoginSchema = z.object({
   email: z
     .string({ required_error: "Email is required!" })
@@ -46,7 +48,7 @@ export const POST = async (request: Request): Promise<Response> => {
           status: 200,
         }
       );
-      
+
       resp.cookies.set("Authorization", `Bearer ${access_token}`);
 
       return resp;

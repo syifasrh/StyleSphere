@@ -8,6 +8,8 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { ResponseInterface } from "../../route";
 
+export const dynamic = "force-dynamic";
+
 const UserSchema = z.object({
   username: z.string({ required_error: "Username is required!" }),
   email: z
@@ -31,7 +33,6 @@ export const POST = async (request: Request): Promise<Response> => {
         {
           statusCode: 401,
           message: "Username is already taken!",
-          
         },
         {
           status: 401,

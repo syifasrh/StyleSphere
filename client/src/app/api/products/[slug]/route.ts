@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { ProductModel, getProductBySlug } from "@/db/models/products";
 import { ResponseInterface } from "../../route";
 
+export const dynamic = "force-dynamic";
+
 export const GET = async (
   _request: NextRequest,
   { params: { slug } }: { params: { slug: string } }

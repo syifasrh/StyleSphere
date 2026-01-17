@@ -10,7 +10,7 @@ import { ResponseInterface } from "../route";
 import { ObjectId } from "mongodb";
 import { verifyToken } from "@/lib/jose";
 
-// export const dynamic = 'force-static'
+export const dynamic = "force-dynamic";
 
 export const GET = async (
   request: NextRequest,

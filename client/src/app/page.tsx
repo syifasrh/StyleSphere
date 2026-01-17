@@ -1,11 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-"use server";
 
 import Card from "@/components/Card";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import Link from "next/link";
 import { BASE_URL } from "./BaseURL";
+
+export const dynamic = "force-dynamic";
 
 const getData = async () => {
   try {
@@ -159,7 +160,14 @@ export default async function Home() {
         <div className="flex justify-center my-10">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
             {res.data.map((value: any) => {
-              return <Card key={value._id} item={value} product={value} productId={value} />;
+              return (
+                <Card
+                  key={value._id}
+                  item={value}
+                  product={value}
+                  productId={value}
+                />
+              );
             })}
           </div>
         </div>
