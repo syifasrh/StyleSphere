@@ -28,44 +28,44 @@ export default async function Home() {
       <div className="carousel carousel-center rounded-box my-10 h-96 mx-14 mt-24 shadow-lg">
         <div className="carousel-item bg-cover">
           <img
-            src="https://voila.id/cdn/shop/files/9product-734814-DAAAI-2747-Xms-2023-09-13T2155130700_1200x1200.jpg?v=1694616949"
-            alt="Pizza"
+            src="https://www.voilaleather.com/wp-content/uploads/2023/07/Beverly-Nrown-Mdl-New-6.jpg"
+            alt="Luxury designer handbag"
           />
         </div>
         <div className="carousel-item">
           <img
-            src="https://voila.id/cdn/shop/files/6product-8BR600ANT2F1K37-Xms-2023-05-09T1123370700_1024x1024.jpg?v=1683606279"
-            alt="Pizza"
+            src="https://www.voilaleather.com/wp-content/uploads/2021/09/Beverly-Black-Model-2048x2048.jpg.webp"
+            alt="Premium leather bag"
           />
         </div>
         <div className="carousel-item">
           <img
             src="https://cdn-images.farfetch-contents.com/18/08/67/51/18086751_38336213_1000.jpg"
-            alt="Pizza"
+            alt="Designer shoulder bag"
           />
         </div>
         <div className="carousel-item">
           <img
-            src="https://voila.id/cdn/shop/files/3product-M46222-Xms-2023-08-03T1301070700_1200x1200.jpg?v=1691042476"
-            alt="Pizza"
+            src="https://www.voilaleather.com/wp-content/uploads/2024/07/Voila-Celeste-5-2048x2048.jpg.webp"
+            alt="Elegant handbag collection"
           />
         </div>
         <div className="carousel-item">
           <img
-            src="https://voila.id/cdn/shop/files/8product-7433561VG9Y1000-Xms-2023-09-09T2118200700_1200x1200.jpg?v=1694269127"
-            alt="Pizza"
+            src="https://www.voilaleather.com/wp-content/uploads/2023/06/Agathe-Black-Mdl-11-2048x2048.jpg.webp"
+            alt="Luxury branded bag"
           />
         </div>
         <div className="carousel-item">
           <img
-            src="https://voila.id/cdn/shop/products/1product-M0455CTZQ_M928-Xms-2023-02-22T1522520700_1024x1024.jpg?v=1677054195"
-            alt="Pizza"
+            src="https://www.voilaleather.com/wp-content/uploads/2021/09/Tote-Selempang-Backpack-Kulit-Asli-Voila-Heydy-13.jpg"
+            alt="High-end fashion bag"
           />
         </div>
         <div className="carousel-item">
           <img
-            src="https://voila.id/cdn/shop/files/1product-A01112-Y01588-21209-Xms-2023-05-31T1557400700_1000x.jpg?v=1686199808"
-            alt="Pizza"
+            src="https://www.voilaleather.com/wp-content/uploads/2023/04/Olathe-Mdl-6-2048x2048.jpg.webp"
+            alt="Exclusive designer bag"
           />
         </div>
       </div>
