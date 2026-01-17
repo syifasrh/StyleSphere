@@ -21,19 +21,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-        <script
-          async
-          src="node_modules/@material-tailwind/html@latest/scripts/ripple.js"
-        ></script>
-
-        <script
-          async
-          src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"
-        ></script>        
+      <script
+        async
+        src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"
+      ></script>
 
       <body className={roboto.className}>
         {children}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js" async></script>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"
+          async
+        ></script>
       </body>
     </html>
   );
